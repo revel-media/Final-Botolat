@@ -1,0 +1,144 @@
+package com.krito.io.botolat;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    String[] typeArray, matchArray;
+    Spinner spinTybe, spinmatch;
+    Button btnSub;
+    EditText edtName;
+    TextView txtAdd, txtDec, txtNum;
+    String tybe;
+    String home;
+    String NumOfTeams;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        spinmatch = findViewById(R.id.spn_match);
+        spinTybe = findViewById(R.id.spn_tybe);
+        btnSub = findViewById(R.id.btn);
+        edtName = findViewById(R.id.edt_name);
+        txtDec = findViewById(R.id.txt_decr);
+        txtAdd = findViewById(R.id.txt_incr);
+        txtNum = findViewById(R.id.txt_count);
+        settype();
+        setmatches();
+        spinmatch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                home = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        spinTybe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tybe = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(adapterView.getContext(), "type is " + tybe, Toast.LENGTH_LONG).show();
+                if (tybe.equals("League")){
+                    NumOfTeams=String.valueOf(3);
+                    txtNum.setText(NumOfTeams);
+                }else if (tybe.equals("Cup")){
+                    NumOfTeams=String.valueOf(2);
+                    txtNum.setText(NumOfTeams);
+                }else {
+                    NumOfTeams=String.valueOf(4);
+                    txtNum.setText(NumOfTeams);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        txtDec.setOnClickListener(this);
+        txtAdd.setOnClickListener(this);
+        btnSub.setOnClickListener(this);
+
+    }
+
+    private void setmatches() {
+        matchArray = getResources().getStringArray(R.array.Home);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, matchArray);
+        spinmatch.setAdapter(adapter);
+    }
+
+    private void settype() {
+        typeArray = getResources().getStringArray(R.array.Type);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typeArray);
+        spinTybe.setAdapter(typeAdapter);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.txt_decr:
+                if (tybe.equals("League") && Integer.parseInt(txtNum.getText().toString()) > 3) {
+                    int count;
+                    count = Integer.parseInt(txtNum.getText().toString());
+                    count--;
+                    NumOfTeams = String.valueOf(count);
+                    txtNum.setText(NumOfTeams);
+                } else if (tybe.equals("Knockout") && Integer.parseInt(txtNum.getText().toString()) > 4) {
+                    int count;
+                    count = Integer.parseInt(txtNum.getText().toString());
+                    count -= 4;
+                    NumOfTeams = String.valueOf(count);
+                    txtNum.setText(NumOfTeams);
+                } else if (tybe.equals("Cup") && Integer.parseInt(txtNum.getText().toString()) > 2) {
+                    int count;
+                    count = Integer.parseInt(txtNum.getText().toString());
+                    count -= 2;
+                    NumOfTeams = String.valueOf(count);
+                    txtNum.setText(NumOfTeams);
+                }
+                break;
+            case R.id.txt_incr:
+                if (tybe.equals("League") && Integer.parseInt(txtNum.getText().toString()) >= 3) {
+                    int count;
+                    count = Integer.parseInt(txtNum.getText().toString());
+                    count++;
+                    NumOfTeams = String.valueOf(count);
+                    txtNum.setText(NumOfTeams);
+                } else if (tybe.equals("Knockout") && Integer.parseInt(txtNum.getText().toString()) >= 4) {
+                    int count;
+                    count = Integer.parseInt(txtNum.getText().toString());
+                    count += 4;
+                    NumOfTeams = String.valueOf(count);
+                    txtNum.setText(NumOfTeams);
+                } else if (tybe.equals("Cup") && Integer.parseInt(txtNum.getText().toString()) >= 2) {
+                    int count;
+                    count = Integer.parseInt(txtNum.getText().toString());
+                    count += 2;
+                    NumOfTeams = String.valueOf(count);
+                    txtNum.setText(NumOfTeams);
+                }
+                break;
+            case R.id.btn:
+                Intent intent = new Intent(getApplicationContext(), InsertTeamsActivity.class);
+                intent.putExtra("numOfTeams", NumOfTeams);
+                startActivity(intent);
+        }
+    }
+}
+
+
+
