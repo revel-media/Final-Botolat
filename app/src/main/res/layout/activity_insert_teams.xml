@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/ic_background"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.krito.io.botolat.InsertTeamsActivity">
+
+    <!--android:background="@drawable/ic_background"-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,9 +20,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:scaleType="fitXY"
                 android:id="@+id/img_team_logo"
                 android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp" />
 
@@ -32,6 +36,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:textColor="#18783C"
                     android:layout_height="wrap_content"
                     android:text="Team Name" />
 
@@ -49,6 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#18783C"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:text="Team Members" />
@@ -94,13 +100,17 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="ADD"
+                android:background="@drawable/green_button"
                 android:id="@+id/btn_add"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="false"
+                android:layout_margin="10dp"
+                android:background="@drawable/green_button"
                 android:text="submit" />
         </LinearLayout>
 

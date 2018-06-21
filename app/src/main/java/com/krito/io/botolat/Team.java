@@ -1,12 +1,13 @@
 package com.krito.io.botolat;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Goda on 20/06/2018.
  */
 
-public class Team {
+public class Team implements Serializable {
     private String teamName;
     private List<String> players;
 

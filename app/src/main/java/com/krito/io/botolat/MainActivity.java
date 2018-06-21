@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnSub;
     EditText edtName;
     TextView txtAdd, txtDec, txtNum;
-    String tybe;
+    String type;
     String home;
     String NumOfTeams;
 
@@ -50,12 +49,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinTybe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                tybe = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(adapterView.getContext(), "type is " + tybe, Toast.LENGTH_LONG).show();
-                if (tybe.equals("League")){
+                type = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(adapterView.getContext(), "type is " + type, Toast.LENGTH_LONG).show();
+                if (type.equals("League")){
                     NumOfTeams=String.valueOf(3);
                     txtNum.setText(NumOfTeams);
-                }else if (tybe.equals("Cup")){
+                }else if (type.equals("Cup")){
                     NumOfTeams=String.valueOf(2);
                     txtNum.setText(NumOfTeams);
                 }else {
@@ -91,19 +90,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txt_decr:
-                if (tybe.equals("League") && Integer.parseInt(txtNum.getText().toString()) > 3) {
+                if (type.equals("League") && Integer.parseInt(txtNum.getText().toString()) > 3) {
                     int count;
                     count = Integer.parseInt(txtNum.getText().toString());
                     count--;
                     NumOfTeams = String.valueOf(count);
                     txtNum.setText(NumOfTeams);
-                } else if (tybe.equals("Knockout") && Integer.parseInt(txtNum.getText().toString()) > 4) {
+                } else if (type.equals("Knockout") && Integer.parseInt(txtNum.getText().toString()) > 4) {
                     int count;
                     count = Integer.parseInt(txtNum.getText().toString());
                     count -= 4;
                     NumOfTeams = String.valueOf(count);
                     txtNum.setText(NumOfTeams);
-                } else if (tybe.equals("Cup") && Integer.parseInt(txtNum.getText().toString()) > 2) {
+                } else if (type.equals("Cup") && Integer.parseInt(txtNum.getText().toString()) > 2) {
                     int count;
                     count = Integer.parseInt(txtNum.getText().toString());
                     count -= 2;
@@ -112,19 +111,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.txt_incr:
-                if (tybe.equals("League") && Integer.parseInt(txtNum.getText().toString()) >= 3) {
+                if (type.equals("League") && Integer.parseInt(txtNum.getText().toString()) >= 3) {
                     int count;
                     count = Integer.parseInt(txtNum.getText().toString());
                     count++;
                     NumOfTeams = String.valueOf(count);
                     txtNum.setText(NumOfTeams);
-                } else if (tybe.equals("Knockout") && Integer.parseInt(txtNum.getText().toString()) >= 4) {
+                } else if (type.equals("Knockout") && Integer.parseInt(txtNum.getText().toString()) >= 4) {
                     int count;
                     count = Integer.parseInt(txtNum.getText().toString());
                     count += 4;
                     NumOfTeams = String.valueOf(count);
                     txtNum.setText(NumOfTeams);
-                } else if (tybe.equals("Cup") && Integer.parseInt(txtNum.getText().toString()) >= 2) {
+                } else if (type.equals("Cup") && Integer.parseInt(txtNum.getText().toString()) >= 2) {
                     int count;
                     count = Integer.parseInt(txtNum.getText().toString());
                     count += 2;
@@ -135,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn:
                 Intent intent = new Intent(getApplicationContext(), InsertTeamsActivity.class);
                 intent.putExtra("numOfTeams", NumOfTeams);
+                intent.putExtra("type",type);
                 startActivity(intent);
         }
     }

@@ -2,13 +2,13 @@
     <string name="app_name">Botolat</string>
 
     <string-array name="Type">
-    <item>League</item>
-    <item>Knockout</item>
-    <item>Cup</item>
-</string-array>
+        <item>League</item>
+        <item>Knockout</item>
+        <item>Cup</item>
+    </string-array>
 
     <string-array name="Home">
-    <item>yes</item>
-    <item>no</item>
+        <item>yes</item>
+        <item>no</item>
     </string-array>
 </resources>
