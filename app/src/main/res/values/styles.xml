@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="style_Spinner">
+        <item name="android:dropDownSelector">@android:color/transparent</item>
+        <item name="android:popupBackground">#18783C</item>
+        <item name="android:radius">5dp</item>
+        <item name="android:spinnerMode">dropdown</item>
+    </style>
 </resources>

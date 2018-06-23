@@ -1,6 +1,8 @@
-package com.krito.io.botolat;
+package com.krito.io.botolat.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import com.krito.io.botolat.R;
+
+public class CreateChampionshipActivity extends AppCompatActivity implements View.OnClickListener {
     String[] typeArray, matchArray;
     Spinner spinTybe, spinmatch;
     Button btnSub;
@@ -25,7 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_championship);
+        getSupportActionBar().setTitle("rezetopia");
+        getSupportActionBar().setIcon(R.drawable.ic_logo);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#021408")));
         spinmatch = findViewById(R.id.spn_match);
         spinTybe = findViewById(R.id.spn_tybe);
         btnSub = findViewById(R.id.btn);
@@ -71,18 +79,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtDec.setOnClickListener(this);
         txtAdd.setOnClickListener(this);
         btnSub.setOnClickListener(this);
-
     }
 
     private void setmatches() {
         matchArray = getResources().getStringArray(R.array.Home);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, matchArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_type_row, matchArray);
+        adapter.setDropDownViewResource(R.layout.row_spinners_dropdown);
         spinmatch.setAdapter(adapter);
     }
 
     private void settype() {
         typeArray = getResources().getStringArray(R.array.Type);
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typeArray);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, R.layout.spinner_type_row, typeArray);
         spinTybe.setAdapter(typeAdapter);
     }
 

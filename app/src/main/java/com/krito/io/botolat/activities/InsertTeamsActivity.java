@@ -1,5 +1,5 @@
 
-package com.krito.io.botolat;
+package com.krito.io.botolat.activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,22 +8,18 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.util.AndroidException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 
 
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.krito.io.botolat.R;
+import com.krito.io.botolat.model.Team;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,6 +31,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
     EditText edtTeamName, edtPlayer1, edtPlayer2, edtPlayer3, edtPlayer4;
     ImageView imgTeamLogo;
     Button btnAdd, btnDone;
+    TextView txtMsg, txtMembers, txtTeamName;
     String type;
     int num;
     private static int RESULT_LOAD_IMAGE = 1;
@@ -49,12 +46,17 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
         edtPlayer3 = findViewById(R.id.edt_player3);
         edtPlayer4 = findViewById(R.id.edt_player4);
         imgTeamLogo = findViewById(R.id.img_team_logo);
+        txtMsg = findViewById(R.id.txt_msg);
+        txtTeamName = findViewById(R.id.txt_team_name);
+        txtMembers = findViewById(R.id.txt_members);
         btnAdd = findViewById(R.id.btn_add);
+        btnDone = findViewById(R.id.btn_done);
         numOfTeams = getIntent().getStringExtra("numOfTeams");
         type = getIntent().getStringExtra("type");
         num = Integer.parseInt(numOfTeams);
         btnAdd.setOnClickListener(this);
         imgTeamLogo.setOnClickListener(this);
+        btnDone.setOnClickListener(this);
 
 
     }
@@ -84,12 +86,9 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
                     edtPlayer4.setText("");
                     Log.i("player 0 is ", players.get(0));
                     Log.i("num is ", String.valueOf(num--));
-                } else if (num == 0) {
-                    Toast.makeText(this, "you inserted all teams", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, leagueDateActivity.class);
-                    intent.putExtra("type", type);
-                    intent.putExtra("teamList", (Serializable) teamList);
-                    startActivity(intent);
+                    if (num  == 0) {
+                        visiblity();
+                    }
                 }
                 break;
 
@@ -98,9 +97,28 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
                 imgIntent.setType("image/*");
                 startActivityForResult(imgIntent, RESULT_LOAD_IMAGE);
                 break;
+            case R.id.btn_done:
+                Intent intent = new Intent(this, leagueDateActivity.class);
+                intent.putExtra("type", type);
+                intent.putExtra("teamList", (Serializable) teamList);
+                startActivity(intent);
+                break;
         }
 
 
+    }
+
+    private void visiblity() {
+        edtPlayer1.setVisibility(View.GONE);
+        edtPlayer2.setVisibility(View.GONE);
+        edtPlayer3.setVisibility(View.GONE);
+        edtPlayer4.setVisibility(View.GONE);
+        edtTeamName.setVisibility(View.GONE);
+        txtTeamName.setVisibility(View.GONE);
+        txtMembers.setVisibility(View.GONE);
+        btnAdd.setVisibility(View.GONE);
+        btnDone.setVisibility(View.VISIBLE);
+        txtMsg.setVisibility(View.VISIBLE);
     }
 
     @Override

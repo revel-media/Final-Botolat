@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.krito.io.botolat.activities.LeagueDetailsActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#E1E1E1"
+        android:paddingRight="20dp"
+        android:text="الدوريات"
+        android:textColor="@android:color/black"
+        android:textSize="25dp" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#E1E1E1">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الجدول" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_goals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الاهداف" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_arrangement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الترتيب" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="النتائج" />
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"></android.support.v4.view.ViewPager>
+</LinearLayout>

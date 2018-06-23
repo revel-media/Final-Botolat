@@ -1,4 +1,4 @@
-package com.krito.io.botolat;
+package com.krito.io.botolat.model;
 
 import java.io.Serializable;
 import java.util.List;
