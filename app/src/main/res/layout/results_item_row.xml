@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_arrw"
+        android:src="@drawable/ic_arrow"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/res_date"
+        android:paddingTop="5sp"
+        android:paddingRight="25dp"
+        android:text="1995  10   16"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/img_arrw"
+        android:id="@+id/rcycler_teams_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

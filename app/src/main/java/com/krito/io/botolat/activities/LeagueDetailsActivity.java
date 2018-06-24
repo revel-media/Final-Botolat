@@ -29,6 +29,22 @@ public class LeagueDetailsActivity extends FragmentActivity {
         viewPager = findViewById(R.id.view_pager);
         pagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 }

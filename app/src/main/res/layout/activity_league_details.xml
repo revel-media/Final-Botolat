@@ -7,10 +7,14 @@
     android:orientation="vertical"
     tools:context="com.krito.io.botolat.activities.LeagueDetailsActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#18783C" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="#E1E1E1"
         android:paddingRight="20dp"
         android:text="الدوريات"

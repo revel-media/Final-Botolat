@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCreate=findViewById(R.id.btn_create_champ);
         btnCreate.setOnClickListener(this);
         btn.setOnClickListener(this);
+
     }
 
     @Override
@@ -26,10 +27,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tbnn:
                 Intent intent=new Intent(this,LeagueDetailsActivity.class);
                 startActivity(intent);
+                finish();
+
                 break;
             case R.id.btn_create_champ:
                 Intent createIntent=new Intent(this,CreateChampionshipActivity.class);
                 startActivity(createIntent);
+                finish();
+
         }
 
     }

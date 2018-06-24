@@ -3,6 +3,7 @@ package com.krito.io.botolat.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -59,14 +60,14 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 type = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(adapterView.getContext(), "type is " + type, Toast.LENGTH_LONG).show();
-                if (type.equals("League")){
-                    NumOfTeams=String.valueOf(3);
+                if (type.equals("League")) {
+                    NumOfTeams = String.valueOf(3);
                     txtNum.setText(NumOfTeams);
-                }else if (type.equals("Cup")){
-                    NumOfTeams=String.valueOf(2);
+                } else if (type.equals("Cup")) {
+                    NumOfTeams = String.valueOf(2);
                     txtNum.setText(NumOfTeams);
-                }else {
-                    NumOfTeams=String.valueOf(4);
+                } else {
+                    NumOfTeams = String.valueOf(4);
                     txtNum.setText(NumOfTeams);
                 }
             }
@@ -140,9 +141,13 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
                 }
                 break;
             case R.id.btn:
+                if (edtName.getText().toString().isEmpty()) {
+
+                    Toast.makeText(this,"please insert champion name",Toast.LENGTH_SHORT).show();
+                }
                 Intent intent = new Intent(getApplicationContext(), InsertTeamsActivity.class);
                 intent.putExtra("numOfTeams", NumOfTeams);
-                intent.putExtra("type",type);
+                intent.putExtra("type", type);
                 startActivity(intent);
         }
     }
