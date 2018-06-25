@@ -96,6 +96,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
                     edtPlayer4.setText("");
                     Log.i("player 0 is ", players.get(0));
                     Log.i("num is ", String.valueOf(num--));
+                    Toast.makeText(this, "you add team" + num + 1, Toast.LENGTH_SHORT).show();
                     if (num == 0) {
                         visiblity();
                     }

@@ -48,12 +48,18 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsHolder> implemen
 
     @Override
     public void onClick(View view) {
-        ResultsHolder holder= (ResultsHolder) view.getTag();
-        teamResultAdapter = new TeamResultAdapter(context);
-        holder.recyclerView.setVisibility(View.VISIBLE);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
-        holder.recyclerView.setLayoutManager(layoutManager);
-        holder.recyclerView.setAdapter(teamResultAdapter);
+        ResultsHolder holder = (ResultsHolder) view.getTag();
+        if (holder.recyclerView.getVisibility() == View.GONE) {
+            teamResultAdapter = new TeamResultAdapter(context);
+            holder.imageView.setImageResource(R.drawable.ic_arrow_up);
+            holder.recyclerView.setVisibility(View.VISIBLE);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+            holder.recyclerView.setLayoutManager(layoutManager);
+            holder.recyclerView.setAdapter(teamResultAdapter);
+        }else {
+            holder.imageView.setImageResource(R.drawable.ic_arrow);
+            holder.recyclerView.setVisibility(View.GONE);
+        }
 
     }
 }
