@@ -41,10 +41,10 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/edit_border"
-            android:paddingLeft="5dp"
-            android:singleLine="true"
             android:imeOptions="actionDone"
+            android:paddingLeft="5dp"
             android:paddingRight="5dp"
+            android:singleLine="true"
             android:textAlignment="center" />
     </LinearLayout>
 
@@ -61,13 +61,16 @@
             android:textColor="#18783C" />
 
         <Spinner
-            android:id="@+id/spn_tybe"
-            style="@style/style_Spinner"
-            android:layout_width="200dp"
+            android:id="@+id/spn_type"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/spin_border"
-            android:layout_marginRight="30dp"></Spinner>
+            android:entries="@array/Type"
+            android:paddingLeft="20dp"
+            android:popupBackground="@color/green5"
+            android:theme="@style/style_Spinner"></Spinner>
     </LinearLayout>
 
     <TextView
@@ -89,7 +92,6 @@
             android:id="@+id/txt_decr"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:text="-"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="25dp"
@@ -130,12 +132,14 @@
 
         <Spinner
             android:id="@+id/spn_match"
-            style="@style/style_Spinner"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/spin_border"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="30dp"></Spinner>
+            android:layout_marginRight="30dp"
+            android:background="@drawable/spin_border"
+            android:entries="@array/Home"
+            android:popupBackground="@color/green5"
+            android:theme="@style/style_Spinner"></Spinner>
     </LinearLayout>
 
     <Button

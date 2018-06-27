@@ -14,19 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".activities.SplashActivity"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.InsertTeamsActivity" />
         <activity android:name=".activities.leagueDateActivity" />
         <activity android:name=".activities.CreateChampionshipActivity" />
         <activity android:name=".activities.LeagueDetailsActivity" />
         <activity android:name=".activities.TodayMatchActivity" />
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.LoginActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.krito.io.botolat.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,6 +24,7 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
     EditText edtName;
     TextView txtAdd, txtDec, txtNum;
     int incr;
+    int spType ,spMatch;
     String type;
     String home;
     String NumOfTeams;
@@ -36,7 +38,7 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#021408")));
         spinMatch = findViewById(R.id.spn_match);
-        spinType = findViewById(R.id.spn_tybe);
+        spinType = findViewById(R.id.spn_type);
         btnSub = findViewById(R.id.btn);
         edtName = findViewById(R.id.edt_name);
         txtDec = findViewById(R.id.txt_decr);
@@ -48,6 +50,12 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 home = adapterView.getItemAtPosition(i).toString();
+                if (i==0){
+                    spinMatch.setSelection(0);
+                }
+
+                spMatch=i;
+
             }
 
             @Override
@@ -59,7 +67,9 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 type = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(adapterView.getContext(), "type is " + type, Toast.LENGTH_LONG).show();
+                if (i==0){
+                    spinType.setSelection(0);
+                }
                 if (type.equals("League")) {
                     NumOfTeams = String.valueOf(3);
                     txtNum.setText(NumOfTeams);
@@ -70,6 +80,7 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
                     NumOfTeams = String.valueOf(4);
                     txtNum.setText(NumOfTeams);
                 }
+                spType=i;
             }
 
             @Override
@@ -84,14 +95,13 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
 
     private void setmatches() {
         matchArray = getResources().getStringArray(R.array.Home);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_type_row, matchArray);
-        adapter.setDropDownViewResource(R.layout.row_spinners_dropdown);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_text,R.id.spn_match, matchArray);
         spinMatch.setAdapter(adapter);
     }
 
     private void settype() {
         typeArray = getResources().getStringArray(R.array.Type);
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, R.layout.spinner_type_row, typeArray);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, R.layout.spinner_text, R.id.spn_match, typeArray);
         spinType.setAdapter(typeAdapter);
     }
 
@@ -146,7 +156,7 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
                 }
                 break;
             case R.id.btn:
-                if (edtName.getText().toString().isEmpty()) {
+                if ((edtName.getText().toString().isEmpty()) || spType==0 || spMatch==0 ) {
 
                     Toast.makeText(this, "please insert champion name", Toast.LENGTH_SHORT).show();
                 } else {
