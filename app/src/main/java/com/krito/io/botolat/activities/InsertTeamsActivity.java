@@ -21,6 +21,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.krito.io.botolat.R;
 import com.krito.io.botolat.model.Team;
 
@@ -31,11 +36,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InsertTeamsActivity extends AppCompatActivity implements View.OnClickListener {
-    String numOfTeams;
+    String numOfTeams,url;
+    RequestQueue requestQueue;
+    StringRequest stringRequest;
     List<Team> teamList = new ArrayList<>();
+
     EditText edtTeamName, edtPlayer1, edtPlayer2, edtPlayer3, edtPlayer4;
     ImageView imageView;
     Button btnAdd, btnDone;
@@ -96,7 +106,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
                     edtPlayer4.setText("");
                     Log.i("player 0 is ", players.get(0));
                     Log.i("num is ", String.valueOf(num--));
-                    Toast.makeText(this, "you add team" + num + 1, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "you add team" + (num + 1), Toast.LENGTH_SHORT).show();
                     if (num == 0) {
                         visiblity();
                     }
@@ -107,6 +117,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
                 showPictureDialog();
                 break;
             case R.id.btn_done:
+                sendRequest();
                 Intent intent = new Intent(this, leagueDateActivity.class);
                 intent.putExtra("type", type);
                 intent.putExtra("teamList", (Serializable) teamList);
@@ -115,6 +126,27 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
         }
 
 
+    }
+
+    private void sendRequest() {
+        stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getParams(){
+                Map<String, String> params=new HashMap<>();
+                return params;
+            }
+        };
     }
 
     private void showPictureDialog() {
@@ -161,6 +193,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
         edtTeamName.setVisibility(View.GONE);
         txtTeamName.setVisibility(View.GONE);
         txtMembers.setVisibility(View.GONE);
+        imageView.setVisibility(View.GONE);
         btnAdd.setVisibility(View.GONE);
         btnDone.setVisibility(View.VISIBLE);
         txtMsg.setVisibility(View.VISIBLE);
