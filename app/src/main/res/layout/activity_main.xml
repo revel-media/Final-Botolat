@@ -4,17 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.krito.io.botolat.activities.MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
+
+    <GridView
+        android:id="@+id/grid_champs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="click me"
-        android:id="@+id/tbnn"/>
+        android:layout_marginTop="10dp"
+        android:numColumns="2">
+    </GridView>
+
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/btn_create_champ"
-        android:text="Create "
-        android:layout_below="@id/tbnn"/>
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn2"
+        android:text="انشاء بطولة  " />
 </RelativeLayout>

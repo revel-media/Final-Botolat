@@ -4,13 +4,12 @@ package com.krito.io.botolat.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,40 +25,46 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
 import com.krito.io.botolat.R;
+import com.krito.io.botolat.model.Champoinship;
 import com.krito.io.botolat.model.Team;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class InsertTeamsActivity extends AppCompatActivity implements View.OnClickListener {
-    String numOfTeams,url;
+    String numOfTeams, url, teamImage;
     RequestQueue requestQueue;
     StringRequest stringRequest;
     List<Team> teamList = new ArrayList<>();
-
+    Champoinship champoinship;
     EditText edtTeamName, edtPlayer1, edtPlayer2, edtPlayer3, edtPlayer4;
     ImageView imageView;
     Button btnAdd, btnDone;
     TextView txtMsg, txtMembers, txtTeamName;
     String type;
     int num;
+    String json;
+    List <String> teamNames;
+    List <String> teamImages;
+    List <String> listPlayer0;
+    List <String> listPlayer1;
+    List <String> listPlayer2;
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
     private static int RESULT_LOAD_IMAGE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_teams);
+        champoinship=new Champoinship();
         edtTeamName = findViewById(R.id.edt_team_name);
         edtPlayer1 = findViewById(R.id.edt_player1);
         edtPlayer2 = findViewById(R.id.edt_player2);
@@ -74,39 +79,44 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
         numOfTeams = getIntent().getStringExtra("numOfTeams");
         type = getIntent().getStringExtra("type");
         num = Integer.parseInt(numOfTeams);
+        teamImages=new ArrayList<>();
+        teamNames=new ArrayList<>();
+        listPlayer0 =new ArrayList<>();
+        listPlayer1 =new ArrayList<>();
+        listPlayer2 =new ArrayList<>();
         btnAdd.setOnClickListener(this);
         imageView.setOnClickListener(this);
         btnDone.setOnClickListener(this);
-
-
     }
 
     @Override
     public void onClick(View view) {
-        Team team = new Team();
         String teamName;
-        List<String> players = new ArrayList<>();
+        String player0;
+        String player1;
+        String player2;
         switch (view.getId()) {
             case R.id.btn_add:
-                if (!edtTeamName.getText().toString().isEmpty() && !edtPlayer4.getText().toString().isEmpty() &&
+                if (!edtTeamName.getText().toString().isEmpty()&&
                         !edtPlayer1.getText().toString().isEmpty() && !edtPlayer2.getText().toString().isEmpty()
                         && !edtPlayer3.getText().toString().isEmpty() && num != 0) {
+                    num--;
+                    String name;
                     teamName = edtTeamName.getText().toString();
-                    players.add(edtPlayer1.getText().toString());
-                    players.add(edtPlayer2.getText().toString());
-                    players.add(edtPlayer3.getText().toString());
-                    players.add(edtPlayer4.getText().toString());
-                    team.setPlayers(players);
-                    team.setTeamName(teamName);
-                    teamList.add(team);
+                    player0 = edtPlayer1.getText().toString();
+                    player1 = edtPlayer2.getText().toString();
+                    player2 = edtPlayer3.getText().toString();
+                    teamNames.add(teamName);
+                    listPlayer0.add(player0);
+                    listPlayer1.add(player1);
+                    listPlayer2.add(player2);
                     edtTeamName.setText("");
                     edtPlayer1.setText("");
                     edtPlayer2.setText("");
                     edtPlayer3.setText("");
                     edtPlayer4.setText("");
-                    Log.i("player 0 is ", players.get(0));
-                    Log.i("num is ", String.valueOf(num--));
-                    Toast.makeText(this, "you add team" + (num + 1), Toast.LENGTH_SHORT).show();
+                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    Toast.makeText(this, "you add team" + (num ), Toast.LENGTH_SHORT).show();
                     if (num == 0) {
                         visiblity();
                     }
@@ -117,11 +127,15 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
                 showPictureDialog();
                 break;
             case R.id.btn_done:
-                sendRequest();
-                Intent intent = new Intent(this, leagueDateActivity.class);
-                intent.putExtra("type", type);
-                intent.putExtra("teamList", (Serializable) teamList);
-                startActivity(intent);
+                champoinship.setName(teamNames);
+                champoinship.setPlayer0(listPlayer0);
+                champoinship.setPlayer1(listPlayer1);
+                champoinship.setPlayer2(listPlayer2);
+                champoinship.setTeamImage(teamImages);
+                Gson gson= new Gson();
+                json=gson.toJson(champoinship);
+                Toast.makeText(getApplicationContext(),json,Toast.LENGTH_SHORT).show();
+               // sendRequest();
                 break;
         }
 
@@ -129,7 +143,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void sendRequest() {
-        stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -139,11 +153,11 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
             public void onErrorResponse(VolleyError error) {
 
             }
-        })
-        {
+        }) {
             @Override
-            public Map<String, String> getParams(){
-                Map<String, String> params=new HashMap<>();
+            public Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("data",json);
                 return params;
             }
         };
@@ -211,9 +225,10 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
                 Uri contentURI = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-                    Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    imageView.setImageBitmap(bitmap);
 
+                    imageView.setImageBitmap(bitmap);
+                    saveImage(bitmap);
+                    Log.i("team image", teamImage);
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -224,38 +239,16 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(thumbnail);
             saveImage(thumbnail);
-            Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    private String saveImage(Bitmap myBitmap) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File wallpaperDirectory = new File(
-                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
-        // have the object build the directory structure, if needed.
-        if (!wallpaperDirectory.exists()) {
-            wallpaperDirectory.mkdirs();
-        }
-
-        try {
-            File f = new File(wallpaperDirectory, Calendar.getInstance()
-                    .getTimeInMillis() + ".jpg");
-            f.createNewFile();
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-            MediaScannerConnection.scanFile(this,
-                    new String[]{f.getPath()},
-                    new String[]{"image/jpeg"}, null);
-            fo.close();
-            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
-
-            return f.getAbsolutePath();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        return "";
+    private String saveImage(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        teamImage = Base64.encodeToString(bytes, Base64.DEFAULT);
+        return teamImage;
     }
 }
 
