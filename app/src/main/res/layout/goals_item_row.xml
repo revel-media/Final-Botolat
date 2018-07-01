@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="368dp"
+        android:layout_height="94dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="#E1E1E1"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias ="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_player">
+
+        <TextView
+            android:id="@+id/txt_playername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#18783C"
+            android:text="لوول"
+            android:layout_centerInParent="true"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/text_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="5dp"
+            android:textColor="#6D6D6D"
+            android:paddingLeft="40dp"
+            android:text="هدف"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/text_goals_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/text_goal"
+            android:paddingBottom="5dp"
+            android:textColor="#18783C"
+            android:paddingLeft="5dp"
+            android:text="20"
+            android:textStyle="bold"
+            android:textSize="15dp" />
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_choe" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="5dp"
+                    android:text="لاعب وسط"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/text_player_pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="5dp"
+                    android:textColor="#18783C"
+                    android:paddingRight="20dp"
+                    android:text="المركز: "
+                    android:textStyle="bold"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/lin1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_ball" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_team_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="5dp"
+                    android:text="لاعب وسط"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/text_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#18783C"
+                    android:textStyle="bold"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="15dp"
+                    android:text="الفريق: "
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_player"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

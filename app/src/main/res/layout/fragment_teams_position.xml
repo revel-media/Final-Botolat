@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="نقاط"
+            android:textColor="#18783C"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="فرق"
+            android:textColor="#18783C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="هزيمة"
+            android:textColor="#18783C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="تعادل"
+            android:textColor="#18783C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="فوز"
+            android:textColor="#18783C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="لعب"
+            android:textColor="#18783C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="الفريق"
+            android:textColor="#18783C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:text="م"
+            android:textColor="#18783C"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#E1E1E1" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_position"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

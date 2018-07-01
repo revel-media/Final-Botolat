@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/txt_rplayer_red"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/bord"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/txt_rplayer_yellow"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/bord"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/txt_rplayer_goal"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/bord"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/txt_rplayer_name"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bord"
+        android:singleLine="true"
+        android:text="goda"
+        android:textAlignment="center"
+        android:textSize="15dp" />
+
+</LinearLayout>
