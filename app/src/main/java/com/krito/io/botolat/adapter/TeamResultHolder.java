@@ -18,8 +18,8 @@ public class TeamResultHolder extends RecyclerView.ViewHolder {
         super(view);
         imgTeam1=view.findViewById(R.id.image_result_team1);
         imgTeam2=view.findViewById(R.id.image_result_team2);
-        txtDate=view.findViewById(R.id.text_result_date);
-        txtTime=view.findViewById(R.id.text_result_time);
+        txtDate=view.findViewById(R.id.text_match_start);
+        txtTime=view.findViewById(R.id.text_details);
         txtName1=view.findViewById(R.id.text_team1);
         txtName2=view.findViewById(R.id.text_team2);
     }
