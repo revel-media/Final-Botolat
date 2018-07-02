@@ -26,7 +26,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,8 +108,57 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
+
+
         <TextView
             android:id="@+id/txt_incr"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="+"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Number Of players"
+        android:textColor="#18783C" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/green_button">
+
+        <TextView
+            android:id="@+id/txt_decr_player"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            android:text="-"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_players_count"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="5"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/txt_incr_player"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:text="+"
@@ -122,7 +171,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -148,7 +197,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/green_button"
         android:text="Submit"
         android:textColor="#FFFFFF" />

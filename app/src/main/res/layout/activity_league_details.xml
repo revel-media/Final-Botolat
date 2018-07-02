@@ -34,7 +34,7 @@
             android:id="@+id/tab_table"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="الجدول" />
+            android:text="مبارايات اليوم" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab_goals"

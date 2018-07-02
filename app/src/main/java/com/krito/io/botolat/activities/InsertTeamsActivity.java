@@ -9,6 +9,8 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -58,24 +60,26 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
     private static int RESULT_LOAD_IMAGE = 1;
-
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_teams);
+        //recyclerView=findViewById(R.id.recycler_players);
+        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getApplicationContext());
         champoinship=new Champoinship();
         edtTeamName = findViewById(R.id.edt_team_name);
-        edtPlayer1 = findViewById(R.id.edt_player1);
-        edtPlayer2 = findViewById(R.id.edt_player2);
-        edtPlayer3 = findViewById(R.id.edt_player3);
-        edtPlayer4 = findViewById(R.id.edt_player4);
         imageView = findViewById(R.id.img_team_logo);
         txtMsg = findViewById(R.id.txt_msg);
         txtTeamName = findViewById(R.id.txt_team_name);
         txtMembers = findViewById(R.id.txt_members);
         btnAdd = findViewById(R.id.btn_add);
         btnDone = findViewById(R.id.btn_done);
+        edtPlayer1=findViewById(R.id.edt_player0);
+        edtPlayer2=findViewById(R.id.edt_player1);
+        edtPlayer3=findViewById(R.id.edt_player2);
+        edtPlayer4=findViewById(R.id.edt_player3);
         numOfTeams = getIntent().getStringExtra("numOfTeams");
         type = getIntent().getStringExtra("type");
         num = Integer.parseInt(numOfTeams);
@@ -84,6 +88,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
         listPlayer0 =new ArrayList<>();
         listPlayer1 =new ArrayList<>();
         listPlayer2 =new ArrayList<>();
+//        recyclerView.setLayoutManager(layoutManager);
         btnAdd.setOnClickListener(this);
         imageView.setOnClickListener(this);
         btnDone.setOnClickListener(this);

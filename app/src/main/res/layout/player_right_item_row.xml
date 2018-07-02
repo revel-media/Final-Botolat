@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/txt_rplayer_red"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/bord"
         android:text="0"
@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/txt_rplayer_yellow"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/bord"
         android:text="0"
@@ -27,21 +27,22 @@
     <TextView
         android:id="@+id/txt_rplayer_goal"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/bord"
         android:text="0"
         android:textAlignment="center"
         android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/txt_rplayer_name"
+    <Spinner
+        android:id="@+id/spn_rplayer_name"
         android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bord"
+        android:layout_height="30dp"
+        android:background="@drawable/spin_border"
+        android:popupBackground="@color/green5"
         android:singleLine="true"
-        android:text="goda"
         android:textAlignment="center"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:theme="@style/style_Spinner" />
 
 </LinearLayout>

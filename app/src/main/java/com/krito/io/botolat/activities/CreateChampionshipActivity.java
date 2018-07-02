@@ -1,12 +1,10 @@
 package com.krito.io.botolat.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,8 +32,8 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
     Spinner spinType, spinMatch;
     Button btnSub;
     EditText edtName;
-    TextView txtAdd, txtDec, txtNum;
-    int incr;
+    TextView txtAdd, txtDec, txtNum, txtAddPlayer, txtDecPlayer, txtPlayerCount;
+    int incr,playerCount;
     int spType, spMatch;
     String type, champName;
     String home, NumOfTeams;
@@ -56,6 +54,9 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
         txtDec = findViewById(R.id.txt_decr);
         txtAdd = findViewById(R.id.txt_incr);
         txtNum = findViewById(R.id.txt_count);
+        txtPlayerCount = findViewById(R.id.txt_players_count);
+        txtDecPlayer = findViewById(R.id.txt_decr_player);
+        txtAddPlayer = findViewById(R.id.txt_incr_player);
         requestQueue = Volley.newRequestQueue(this);
         settype();
         setmatches();
@@ -103,6 +104,9 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
         });
         txtDec.setOnClickListener(this);
         txtAdd.setOnClickListener(this);
+        btnSub.setOnClickListener(this);
+        txtDecPlayer.setOnClickListener(this);
+        txtAddPlayer.setOnClickListener(this);
         btnSub.setOnClickListener(this);
     }
 
@@ -168,6 +172,26 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
                     txtNum.setText(NumOfTeams);
                 }
                 break;
+            case R.id.txt_decr_player:
+                int count;
+                count = Integer.parseInt(txtPlayerCount.getText().toString());
+                if (count < 4) {
+                    Toast.makeText(this, "this is the minimum count", Toast.LENGTH_SHORT).show();
+                } else {
+                    count--;
+                    txtPlayerCount.setText(String.valueOf(count));
+                }
+                playerCount=count;
+                break;
+
+            case R.id.txt_incr_player:
+                int pcount;
+                pcount=Integer.parseInt(txtPlayerCount.getText().toString());
+                pcount++;
+                txtPlayerCount.setText(String.valueOf(pcount));
+                playerCount=pcount;
+                break;
+
             case R.id.btn:
                 if ((edtName.getText().toString().isEmpty()) || spType == 0 || spMatch == 0) {
 
@@ -178,6 +202,7 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
                     Intent intent = new Intent(getApplicationContext(), InsertTeamsActivity.class);
                     intent.putExtra("numOfTeams", NumOfTeams);
                     intent.putExtra("type", type);
+                    intent.putExtra("players",playerCount);
                     startActivity(intent);
                 }
         }
