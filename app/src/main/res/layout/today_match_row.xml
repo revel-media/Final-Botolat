@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/graay"
+    android:layout_marginTop="10dp"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -69,6 +71,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:text="ابدا المباراة"
+        android:textColor="@android:color/white"
         android:background="@drawable/btn2"
         app:layout_constraintEnd_toStartOf="@+id/text_team2"
         app:layout_constraintHorizontal_bias="0.469"

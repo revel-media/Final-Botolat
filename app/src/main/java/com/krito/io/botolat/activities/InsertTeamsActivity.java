@@ -88,6 +88,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
         listPlayer0 =new ArrayList<>();
         listPlayer1 =new ArrayList<>();
         listPlayer2 =new ArrayList<>();
+//
 //        recyclerView.setLayoutManager(layoutManager);
         btnAdd.setOnClickListener(this);
         imageView.setOnClickListener(this);
