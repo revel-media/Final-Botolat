@@ -23,7 +23,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     TextView txtTeam1Goal, txtTeam2Goal;
     List<String> rightTeam;
     Button btnStart;
-    int start ;
+    int start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,13 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_match);
         btnStart = findViewById(R.id.btn_start);
         btnStart.setOnClickListener(this);
-        start=0;
+        start = 0;
         rightTeam = new ArrayList<>();
         tesData();
         txtTeam1Goal = findViewById(R.id.txt_team1_goal);
         txtTeam2Goal = findViewById(R.id.txt_team2_goal);
         rightPlayerAdapter = new RightPlayerAdapter(this, rightTeam);
-        leftPlayerAdapter = new LeftPlayerAdapter(this,rightTeam);
+        leftPlayerAdapter = new LeftPlayerAdapter(this, rightTeam);
         rightRecycler = findViewById(R.id.recycler_team2);
         leftRecycler = findViewById(R.id.recycler_team1);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -71,7 +71,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         if (start == 0) {
             start = 1;
             btnStart.setText("انهي المباراة");
-        } else if (start==1){
+        } else if (start == 1) {
             start = 2;
             btnStart.setText("انتهت");
         }

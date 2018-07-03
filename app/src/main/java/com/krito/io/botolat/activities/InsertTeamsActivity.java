@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.krito.io.botolat.R;
+import com.krito.io.botolat.adapter.InsertPlayerAdapter;
 import com.krito.io.botolat.model.Champoinship;
 import com.krito.io.botolat.model.Team;
 
@@ -50,25 +51,25 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
     Button btnAdd, btnDone;
     TextView txtMsg, txtMembers, txtTeamName;
     String type;
-    int num;
+    int num, playersCount;
     String json;
-    List <String> teamNames;
-    List <String> teamImages;
-    List <String> listPlayer0;
-    List <String> listPlayer1;
-    List <String> listPlayer2;
+
+    List<String> teamPlayers = new ArrayList<>();
+    String[] players;
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
     private static int RESULT_LOAD_IMAGE = 1;
-    RecyclerView recyclerView;
+    int test;
+    RecyclerView recyclerPlayers;
+    InsertPlayerAdapter insertPlayerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_teams);
-        //recyclerView=findViewById(R.id.recycler_players);
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getApplicationContext());
-        champoinship=new Champoinship();
+        recyclerPlayers = findViewById(R.id.recycler_players);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        champoinship = new Champoinship();
         edtTeamName = findViewById(R.id.edt_team_name);
         imageView = findViewById(R.id.img_team_logo);
         txtMsg = findViewById(R.id.txt_msg);
@@ -76,72 +77,65 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
         txtMembers = findViewById(R.id.txt_members);
         btnAdd = findViewById(R.id.btn_add);
         btnDone = findViewById(R.id.btn_done);
-        edtPlayer1=findViewById(R.id.edt_player0);
-        edtPlayer2=findViewById(R.id.edt_player1);
-        edtPlayer3=findViewById(R.id.edt_player2);
-        edtPlayer4=findViewById(R.id.edt_player3);
         numOfTeams = getIntent().getStringExtra("numOfTeams");
         type = getIntent().getStringExtra("type");
+        playersCount = getIntent().getIntExtra("players", 4);
+        Toast.makeText(this, " players count is " + playersCount, Toast.LENGTH_SHORT).show();
         num = Integer.parseInt(numOfTeams);
-        teamImages=new ArrayList<>();
-        teamNames=new ArrayList<>();
-        listPlayer0 =new ArrayList<>();
-        listPlayer1 =new ArrayList<>();
-        listPlayer2 =new ArrayList<>();
-//
-//        recyclerView.setLayoutManager(layoutManager);
+
         btnAdd.setOnClickListener(this);
         imageView.setOnClickListener(this);
         btnDone.setOnClickListener(this);
+        recyclerPlayers.setLayoutManager(layoutManager);
+        insertPlayerAdapter = new InsertPlayerAdapter(this, playersCount);
+        recyclerPlayers.setAdapter(insertPlayerAdapter);
+
+
     }
 
     @Override
     public void onClick(View view) {
         String teamName;
-        String player0;
-        String player1;
-        String player2;
+
         switch (view.getId()) {
             case R.id.btn_add:
-                if (!edtTeamName.getText().toString().isEmpty()&&
-                        !edtPlayer1.getText().toString().isEmpty() && !edtPlayer2.getText().toString().isEmpty()
-                        && !edtPlayer3.getText().toString().isEmpty() && num != 0) {
+                Team team=new Team();
+                if (!edtTeamName.getText().toString().isEmpty()) {
                     num--;
                     String name;
                     teamName = edtTeamName.getText().toString();
-                    player0 = edtPlayer1.getText().toString();
-                    player1 = edtPlayer2.getText().toString();
-                    player2 = edtPlayer3.getText().toString();
-                    teamNames.add(teamName);
-                    listPlayer0.add(player0);
-                    listPlayer1.add(player1);
-                    listPlayer2.add(player2);
                     edtTeamName.setText("");
-                    edtPlayer1.setText("");
-                    edtPlayer2.setText("");
-                    edtPlayer3.setText("");
-                    edtPlayer4.setText("");
-                    imageView.setImageResource(R.mipmap.ic_launcher);
-                    Toast.makeText(this, "you add team" + (num ), Toast.LENGTH_SHORT).show();
-                    if (num == 0) {
-                        visiblity();
+                    players = insertPlayerAdapter.getPlayers();
+                    team.setPlayers(players);
+                    team.setTeamImage(teamImage);
+                    team.setTeamName(teamName);
+                    teamList.add(team);
+                    if (players.length != playersCount) {
+                        Toast.makeText(this, " insert all players", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, " player 1 " + players[0], Toast.LENGTH_SHORT).show();
+                        // create object of team and set data inside it then inside champ obj
+                        insertPlayerAdapter = new InsertPlayerAdapter(this, playersCount);
+                        recyclerPlayers.setAdapter(insertPlayerAdapter);
+                        imageView.setImageResource(R.mipmap.ic_launcher);
+                        Toast.makeText(this, "you add team" + (num), Toast.LENGTH_SHORT).show();
+                        if (num == 0) {
+                            visiblity();
+                        }
                     }
                 }
+
                 break;
 
             case R.id.img_team_logo:
                 showPictureDialog();
                 break;
             case R.id.btn_done:
-                champoinship.setName(teamNames);
-                champoinship.setPlayer0(listPlayer0);
-                champoinship.setPlayer1(listPlayer1);
-                champoinship.setPlayer2(listPlayer2);
-                champoinship.setTeamImage(teamImages);
-                Gson gson= new Gson();
-                json=gson.toJson(champoinship);
-                Toast.makeText(getApplicationContext(),json,Toast.LENGTH_SHORT).show();
-               // sendRequest();
+                champoinship.setTeamList(teamList);
+                Gson gson = new Gson();
+                json = gson.toJson(champoinship);
+                Toast.makeText(getApplicationContext(), json, Toast.LENGTH_SHORT).show();
+                // sendRequest();
                 break;
         }
 
@@ -163,7 +157,7 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
             @Override
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("data",json);
+                params.put("data", json);
                 return params;
             }
         };
@@ -206,10 +200,8 @@ public class InsertTeamsActivity extends AppCompatActivity implements View.OnCli
 
 
     private void visiblity() {
-        edtPlayer1.setVisibility(View.GONE);
-        edtPlayer2.setVisibility(View.GONE);
-        edtPlayer3.setVisibility(View.GONE);
-        edtPlayer4.setVisibility(View.GONE);
+
+        recyclerPlayers.setVisibility(View.GONE);
         edtTeamName.setVisibility(View.GONE);
         txtTeamName.setVisibility(View.GONE);
         txtMembers.setVisibility(View.GONE);

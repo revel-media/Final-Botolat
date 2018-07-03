@@ -9,21 +9,29 @@ import java.util.List;
 
 public class Team implements Serializable {
     private String teamName;
-    private List<String> players;
+    private String[] players;
+    private String teamImage;
 
     public String getTeamName() {
         return teamName;
     }
-
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
 
-    public List<String> getPlayers() {
+    public String[] getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<String> players) {
+    public void setPlayers(String[] players) {
         this.players = players;
+    }
+
+    public String getTeamImage() {
+        return teamImage;
+    }
+
+    public void setTeamImage(String teamImage) {
+        this.teamImage = teamImage;
     }
 }

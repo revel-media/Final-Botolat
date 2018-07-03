@@ -33,7 +33,7 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
     Button btnSub;
     EditText edtName;
     TextView txtAdd, txtDec, txtNum, txtAddPlayer, txtDecPlayer, txtPlayerCount;
-    int incr,playerCount;
+    int incr, playerCount;
     int spType, spMatch;
     String type, champName;
     String home, NumOfTeams;
@@ -181,15 +181,14 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
                     count--;
                     txtPlayerCount.setText(String.valueOf(count));
                 }
-                playerCount=count;
+                //playerCount=count;
                 break;
 
             case R.id.txt_incr_player:
                 int pcount;
-                pcount=Integer.parseInt(txtPlayerCount.getText().toString());
+                pcount = Integer.parseInt(txtPlayerCount.getText().toString());
                 pcount++;
                 txtPlayerCount.setText(String.valueOf(pcount));
-                playerCount=pcount;
                 break;
 
             case R.id.btn:
@@ -198,11 +197,12 @@ public class CreateChampionshipActivity extends AppCompatActivity implements Vie
                     Toast.makeText(this, "please insert champion name", Toast.LENGTH_SHORT).show();
                 } else {
                     champName = edtName.getText().toString();
+                    playerCount = Integer.parseInt(txtPlayerCount.getText().toString());
                     sendRequest();
                     Intent intent = new Intent(getApplicationContext(), InsertTeamsActivity.class);
                     intent.putExtra("numOfTeams", NumOfTeams);
                     intent.putExtra("type", type);
-                    intent.putExtra("players",playerCount);
+                    intent.putExtra("players", playerCount);
                     startActivity(intent);
                 }
         }

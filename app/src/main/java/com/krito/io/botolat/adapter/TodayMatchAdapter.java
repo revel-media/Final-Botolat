@@ -14,10 +14,10 @@ import com.krito.io.botolat.activities.MatchActivity;
  * Created by Goda on 01/07/2018.
  */
 
-public class TodatMatchAdabter extends RecyclerView.Adapter<TodayMatchHolder> implements View.OnClickListener {
+public class TodayMatchAdapter extends RecyclerView.Adapter<TodayMatchHolder> implements View.OnClickListener {
     Context context;
 
-    public TodatMatchAdabter(Context context) {
+    public TodayMatchAdapter(Context context) {
         this.context = context;
     }
 
@@ -37,6 +37,7 @@ public class TodatMatchAdabter extends RecyclerView.Adapter<TodayMatchHolder> im
     public int getItemCount() {
         return 2;
     }
+
 
     @Override
     public void onClick(View view) {

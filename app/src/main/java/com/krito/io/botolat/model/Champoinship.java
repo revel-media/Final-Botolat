@@ -8,50 +8,14 @@ import java.util.List;
  */
 
 public class Champoinship {
-    private List<String> name=new ArrayList<>();
-    private List<String> player0=new ArrayList<>();
-    private List<String> player1=new ArrayList<>();
-    private List<String> player2=new ArrayList<>();
-    private List<String> teamImage =new ArrayList<>();
+    private List<Team> teamList;
 
-
-    public List<String> getName() {
-        return name;
+    public List<Team> getTeamList() {
+        return teamList;
     }
 
-    public void setName(List<String> name) {
-        this.name = name;
+    public void setTeamList(List<Team> teamList) {
+        this.teamList = teamList;
     }
 
-    public List<String> getPlayer0() {
-        return player0;
-    }
-
-    public void setPlayer0(List<String> player0) {
-        this.player0 = player0;
-    }
-
-    public List<String> getPlayer1() {
-        return player1;
-    }
-
-    public void setPlayer1(List<String> player1) {
-        this.player1 = player1;
-    }
-
-    public List<String> getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2(List<String> player2) {
-        this.player2 = player2;
-    }
-
-    public List<String> getTeamImage() {
-        return teamImage;
-    }
-
-    public void setTeamImage(List<String> teamImage) {
-        this.teamImage = teamImage;
-    }
 }
