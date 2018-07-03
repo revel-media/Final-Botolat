@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="Name"
+            android:text="@string/name"
             android:textColor="#18783C" />
 
         <EditText
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="Tybe"
+            android:text="@string/type"
             android:textColor="#18783C" />
 
         <Spinner
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Number Of Teams"
+        android:text="@string/number_of_match"
         android:textColor="#18783C" />
 
     <LinearLayout
@@ -116,7 +116,7 @@
             android:layout_height="35dp"
             android:text="+"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@android:color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -126,8 +126,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:text="Number Of players"
+        android:text="@string/number_of_players"
         android:textColor="#18783C" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,7 +141,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@android:color/white"
             android:textSize="25dp"
             android:text="-"
             android:textStyle="bold" />
@@ -151,7 +152,7 @@
             android:layout_height="35dp"
             android:text="5"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@android:color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -200,7 +201,6 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/green_button"
         android:text="Submit"
-        android:textColor="#FFFFFF" />
-
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
