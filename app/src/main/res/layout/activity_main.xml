@@ -26,5 +26,5 @@
         android:layout_marginTop="20dp"
         android:textColor="@android:color/white"
         android:background="@drawable/btn2"
-        android:text="انشاء بطولة  " />
+        android:text="انشاء بطولة" />
 </RelativeLayout>
